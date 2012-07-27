@@ -1,0 +1,21 @@
+PARTAKE( http://partake.in/ )が出力する参加者リストのCSVファイルから、名札のPDFを自動生成するプログラムです。
+
+【動作環境】
+Ruby 1.9.1
+PDFの出力にprawnライブラリを使用しています。
+prawnは、RubyGemsでインストールできます。
+
+gem install prawn
+
+あとは、PARTAKEのCSVファイルの名前をpartake.csvにしてmake_name_plate.rbを実行すれば、Twitterアイコンが自動的にダウンロードされて、name_plate.pdfというのが生成されます。 
+
+出力例 : example_name_plate.pdf
+
+プロキシの設定が必要な環境の場合には、このスクリプトを実行する前に、http_proxyという環境変数を設定してください。Windowsの例：
+
+set http_proxy=http://10.1.2.3:8080
+ruby make_name_plate.rb
+
+【既知の問題】
+prawnライブラリがGIFフォーマットに対応していないため、泣く泣くIrfanViewのコマンドラインオプション( http://omochayasan.sakura.ne.jp/IrfanView/IrfanView/i_options.txt )を使用してPNGに変換しています。Windows環境だとImageMagickを用意するのがめんどう。
+
